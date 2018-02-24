@@ -20,9 +20,9 @@ public class BTClientHandler extends SimpleChannelInboundHandler<Message> {
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		System.out.println("成功连接服务器");
 		this.ctx = ctx;
-		Message message = new Message();
-		message.setMsg("xixi");
-		sendMsg(message);
+		// Message message = new Message();
+		// message.setMsg("xixi");
+		// sendMsg(message);
 	}
 
 	public boolean sendMsg(Message msg) throws IOException {
@@ -35,6 +35,6 @@ public class BTClientHandler extends SimpleChannelInboundHandler<Message> {
 	protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
 		// TODO Auto-generated method stub
 		Message m = msg;
-		System.out.println(m.getUid() + ":" + m.getMsg());
+		System.out.println(m.getMsg());
 	}
 }

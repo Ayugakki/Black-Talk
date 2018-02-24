@@ -32,6 +32,7 @@ public class ConnectClient implements Runnable {
 		Message message = new Message();
 		Scanner scanner = new Scanner(System.in);
 		do {
+			message.setMsgType(Byte.parseByte(scanner.nextLine()));
 			message.setMsg(scanner.nextLine());
 		}
 		while (BTClientHandler.sendMsg(message));

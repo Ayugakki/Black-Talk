@@ -88,6 +88,6 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "appId:" + this.appId + ",version:" + this.version + ",uid:" + this.uid + ",msgType:" + this.msgType + ",receiveId:" + this.receiveId + ",msg:" + this.msg;
+		return "msgType:" + this.msgType + ",msg:" + this.msg;
 	}
 }
