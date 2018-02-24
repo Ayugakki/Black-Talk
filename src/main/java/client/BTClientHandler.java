@@ -1,10 +1,10 @@
-package gakki.client;
+package client;
 
 import java.io.IOException;
 
-import gakki.server.Message;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import server.Message;
 
 public class BTClientHandler extends SimpleChannelInboundHandler<Message> {
 

@@ -1,4 +1,4 @@
-package gakki.server;
+package server;
 
 @org.msgpack.annotation.Message
 public class Message {

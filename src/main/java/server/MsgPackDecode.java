@@ -1,4 +1,4 @@
-package gakki.server;
+package server;
 
 import java.util.List;
 
