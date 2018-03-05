@@ -9,6 +9,7 @@ import server.Message;
 public class BTClientHandler extends SimpleChannelInboundHandler<Message> {
 
 	private ChannelHandlerContext ctx;
+	private Long uid = -1l;
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
@@ -26,6 +27,7 @@ public class BTClientHandler extends SimpleChannelInboundHandler<Message> {
 	}
 
 	public boolean sendMsg(Message msg) throws IOException {
+		msg.setUid(uid.intValue());
 		System.out.println("client:" + msg);
 		ctx.channel().writeAndFlush(msg);
 		return msg.getMsg().equals("q") ? false : true;
@@ -35,6 +37,9 @@ public class BTClientHandler extends SimpleChannelInboundHandler<Message> {
 	protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
 		// TODO Auto-generated method stub
 		Message m = msg;
+		if (msg.getMsg().indexOf("success") != -1) {
+			uid = (long) msg.getUid();
+		}
 		System.out.println(m.getMsg());
 	}
 }

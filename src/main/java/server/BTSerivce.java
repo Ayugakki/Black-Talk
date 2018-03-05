@@ -30,8 +30,9 @@ public class BTSerivce {
 
 	public static Message handlerRequest(ChannelHandlerContext cxt, Message msg) {
 		Message resp = new Message();
-		if (!islogin(msg)) {
+		if (!islogin(cxt.channel())) {
 			resp.setMsg("not login");
+			return resp;
 		}
 		for (Channel ch : memberMap.keySet()) {
 			if (cxt.channel().equals(ch))
@@ -42,8 +43,8 @@ public class BTSerivce {
 		return resp;
 	}
 
-	public static boolean islogin(Message msg) {
-		return memberMap.containsKey((long) msg.getUid());
+	public static boolean islogin(Channel channel) {
+		return memberMap.containsKey(channel);
 	}
 
 	public static Message login(ChannelHandlerContext cxt, Message msg) {
@@ -52,6 +53,7 @@ public class BTSerivce {
 			Member member = mapper.readValue(msg.getMsg(), Member.class);
 			if (registeredMember.containsKey(member.getUid()) && registeredMember.get(member.getUid()).getPassword().equals(member.getPassword())) {
 				resp.setMsg("login success");
+				resp.setUid(member.getUid().intValue());
 			}
 			else {
 				resp.setMsg("login failure");
@@ -74,6 +76,7 @@ public class BTSerivce {
 				registeredMember.put(member.getUid(), member);
 				memberMap.put(ctx.channel(), member);
 				resp.setMsg("register success");
+				resp.setUid(member.getUid().intValue());
 			}
 		}
 		catch (Exception e) {
