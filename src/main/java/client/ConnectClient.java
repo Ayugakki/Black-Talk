@@ -50,6 +50,7 @@ public class ConnectClient implements Runnable {
 
 	@Override
 	public void run() {
+		// netty
 		EventLoopGroup workGroup = new NioEventLoopGroup();
 		Bootstrap b = new Bootstrap();
 		try {
